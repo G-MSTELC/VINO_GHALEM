@@ -1,0 +1,17 @@
+/*	(toute valeur se répétant plus que 3 fois
+  	 devrait se retrouver ici) */
+
+:root {
+    --black: #000000;
+    --light-red: #8F002A; 
+    --light-red-opacity: rgba(143, 0, 42, 0.5);
+    --dark-red: #580019; 
+    --dark-red-opacity: rgba(88, 0, 25, 0.5);
+    --white: #FEFEFF;
+
+    --space-xs: .25rem; 
+    --space-s: .5rem; 
+    --space: 1rem; 
+    --space-wide: 2rem; 
+    --h1-size: 20px; 
+    }

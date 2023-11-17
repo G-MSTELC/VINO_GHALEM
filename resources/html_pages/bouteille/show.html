@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../../public/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/dox8qou.css">
+    <title></title>
+</head>
+<body>
+        <header>
+            ajouter une bouteille
+        </header>
+        <main class="nav-margin">
+            <section class="card-bouteille">
+                <picture>
+                    <img src="https://www.saq.com/media/catalog/product/1/1/11097477-1_1628019647.png" alt="">
+                </picture>
+                <div class="card-bouteille-content">
+                    <div class="card-bouteille-info">
+                        <a href="">
+                            <h2>Argyros Atlantis 2021</h2>
+                        </a>
+                        <span>Vin blanc | 750 ml | Grèce</span>
+                        <p>23,40 $</p>
+                    </div>
+                    <a href="" class="btn-ajouter">+ Ajouter</a>
+                </div>
+            </section>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Appellation</th>
+                        <td></td>
+                    </tr>
+                        <tr>
+                        <th>Millésime</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Degré d'alcool</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Couleur</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Producteur</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Cépage</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Région</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Pastille de goût</th>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- <div class="modal-container"> -->
+                <dialog id="modal-ajouter" class="modal">
+                        <h2>Confirmation d'ajout</h2>
+                        <hr>
+                        <form action="" class="form-modal">
+                                <div class="form-radio">
+                                    <input type="radio" id="location-cellier" name="location" checked >
+                                    <label for="location-cellier">Celliers</label><br>
+                                </div>
+                                <div class="form-radio">
+                                    <input type="radio" id="location-liste" name="location">
+                                    <label for="location-liste">Listes</label>
+                                </div>
+                                <div class="form-input-container">
+                                    <label for="cellier-location">DIRECTION</label>
+                                    <select name="cellier-location" id="cellier-location">
+                                        <option value="">Maison</option>
+                                        <option value="">Cottage</option>
+                                        <option value="">Bureau</option>
+                                    </select>
+                                </div>
+                                <div class="card-bouteille-qt">
+                                    <button class="btn-decrement">-</button>
+                                    <input type="text" value="1" min="1" readonly>
+                                    <button class="btn-increment">+</button>
+                                </div>
+                                <div class="btn-modal-container">
+                                    <button class="btn-modal-action">ajouter</button>
+                                    <button class="btn-modal-cancel">annuler</button>
+                                </div>
+                        </form>
+                </dialog>
+            <!-- </div> -->
+            <script src="../../js/bottleCounterModal.js"></script>
+            <script src="../../js/modalAjouter.js"></script>
+        </main>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-item">        
+                <a href="#">
+                    <figure class="nav-icon-container">
+                        <img src="../../../public/assets/icons/home_icon.svg" alt="Accueil">
+                        <figcaption>accueil</figcaption>
+                    </figure>
+                </a>
+            </li>
+            <li class="nav-item">        
+                <a href="#">
+                    <figure class="nav-icon-container nav-active">
+                        <img src="../../../public/assets/icons/add_icon.svg" alt="Recherche">
+                        <figcaption class="icons-label">ajouter</figcaption>
+                    </figure>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#">
+                    <figure class="nav-icon-container">
+                        <img src="../../../public/assets/icons/list_icon.svg" alt="Liste d'achats">
+                        <figcaption>liste</figcaption>
+                    </figure>
+                </a>
+            </li>
+            <li class="nav-item">        
+                <a href="#">
+                    <figure class="nav-icon-container">
+                        <img src="../../../public/assets/icons/cellars_icon.svg" alt="Celliers">
+                        <figcaption>celliers</figcaption>
+                    </figure>
+                </a>
+            </li>
+            <li class="nav-item">         
+                <a href="#">
+                    <figure class="nav-icon-container">
+                        <img src="../../../public/assets/icons/profile_icon.svg" alt="Profil">
+                        <figcaption>profil</figcaption>
+                    </figure>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>

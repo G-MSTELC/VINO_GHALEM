@@ -1,0 +1,245 @@
+/*
+	(composante) */
+
+/* form button -> voir btn.css */
+
+.form-forgot-psw {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-forgot-psw a {
+    text-align: right;
+}
+
+/* j'essaye de faire centrer le formulaire qui aura un max-width */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space) var(--space);
+    min-width: 100%;
+}
+
+form {
+    flex-grow: 1;
+    /* max-width: 75ch; */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+/* .form > * + * {
+	margin-top: var(--space-);
+} */
+.form-input-container {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: var(--space-s);
+}
+.form-input-container input:not(input[type='range']) {
+    padding: 5px 10px;
+}
+.form-input-container select {
+    background-color: white;
+    border: 0.5px solid #000;
+    padding: 5px 10px;
+    border-radius: 10px;
+    min-width: 100%;
+}
+
+.form-input-container input[type='number'] {
+    border-radius: 4px;
+    /* padding: 5px 10px; */
+}
+
+form
+    input:not(
+        .card-bouteille-qt input,
+        .form-range-input input,
+        .form-range-number input
+    ) {
+    min-width: 100%;
+    border: 0.5px solid var(--black);
+    /* padding: 0.25em; */
+}
+
+form label,
+summary {
+    text-transform: uppercase;
+    /* text-decoration: underline; */
+    font-size: 12px;
+}
+
+.form-border {
+    border: 0.5px black solid;
+    border-radius: 10px;
+}
+
+.form-button {
+    flex-grow: 1;
+    align-items: flex-end;
+}
+
+/* seulement pour les h1 qui est titre du formulaire */
+.form-h1 {
+    margin-top: 1rem;
+}
+
+.form-ajouter-bouteille {
+    padding-bottom: 1rem;
+}
+
+.form-ajouter-bouteille div.form-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+summary {
+    list-style: none;
+    /* padding-bottom: .5rem; */
+    /* font-weight: bold; */
+    cursor: pointer;
+}
+summary::after {
+    content: url("data:image/svg+xml,%3Csvg width='11' height='6' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 0.999511L4.70454 4.70405C5.14204 5.14155 5.85795 5.14155 6.29545 4.70405L10 0.999512' stroke='black' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    float: right;
+    margin-right: 0.5em;
+}
+details[open] summary::after {
+    content: url("data:image/svg+xml,%3Csvg width='11' height='6' viewBox='0 0 11 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 5.03223L6.29546 1.32769C5.85796 0.890186 5.14205 0.890186 4.70455 1.32769L1 5.03223' stroke='black' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    float: right;
+}
+details {
+    /* padding-bottom: .5rem; */
+    text-transform: uppercase;
+    text-align: left;
+    /* border-bottom: 0.25px darkgray solid; */
+}
+
+/* MODALE AJOUTER */
+.form-modal {
+    margin: 0 1rem 0.5rem 1rem;
+    padding-top: 0.5rem;
+}
+/* .form-modal> * + * {
+    margin-top: .5rem;
+} */
+
+.form-radio {
+    display: flex;
+    /* margin-left: 1rem; */
+}
+.form-radio input[type="radio"],
+.form-radio label {
+    min-width: auto;
+    display: inline-block;
+    margin-right: 10px; /* Pour ajouter un peu d'espace entre les éléments */
+}
+
+/* TAGS */
+
+.tag-container {
+    /* padding: 10px; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #ddd;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.tag:hover {
+    background-color: #ccc;
+}
+
+.tag::after {
+    content: "×";
+    display: block;
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+/* SLIDER */
+.form-range {
+    min-width: 100%;
+    margin-top: 1rem;
+}
+.form-range-slider {
+    height: 5px;
+    position: relative;
+    background-color: #e1e9f6;
+    border-radius: 2px;
+}
+.form-range-selected {
+    height: 100%;
+    left: 0%;
+    right: 0%;
+    position: absolute;
+    border-radius: 5px;
+    background-color: #1b53c0;
+}
+
+.form-range-input {
+    position: relative;
+}
+.form-range-input input {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: -7px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.form-range-input input::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid #1b53c0;
+    background-color: #fff;
+    pointer-events: auto;
+    -webkit-appearance: none;
+}
+.form-range-input input::-moz-range-thumb {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 3px solid #1b53c0;
+    background-color: #fff;
+    pointer-events: auto;
+    -moz-appearance: none;
+}
+
+.form-range-number {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+.form-range-number label {
+    margin-right: 5px;
+}
+.form-range-number input {
+    border: 0.5px solid black;
+    width: 100px;
+    padding: 5px;
+}
+.form-range-number input:first-of-type {
+    margin-right: 15px;
+}

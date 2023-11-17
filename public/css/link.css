@@ -1,0 +1,23 @@
+/* liens qui ne sont pas visuellement des boutons */
+
+.link {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+    text-decoration: underline;
+}
+.link-right {
+    text-align: right;
+    padding-right: 1rem;
+    font-size: 12px;
+}
+
+form.link {
+    font-size: 12px;
+}
+
+.link-intro {
+    font-size: 14px;
+    font-family: Helvetica, sans-serif;
+}

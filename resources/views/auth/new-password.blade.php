@@ -1,0 +1,1 @@
+<!-- Création d'un nouveau mot de passe suite à l'ouverture du courriel reçu -->

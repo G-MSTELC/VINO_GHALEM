@@ -1,0 +1,55 @@
+/*
+	(balises HTML de haut niveau seulement. 
+	 pourrait inclure des classes à la place) */
+
+
+/* -- pile verticale de contenu avec rythme */
+body {
+	display: flex;
+	flex-direction: column;
+	/* gap: var(--gouttiere); */
+	/* padding: var(--espace-petit); */
+    min-height: 100vh;
+    
+}
+
+/* .container, */
+main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: var(--space-s);
+    align-items: center;
+    margin: 0 var(--space-s);
+    /* border: 2px solid black;
+    border-radius: 10px; */
+}
+
+main>div {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-s);
+}
+/* .main > * + * {
+	margin-top: var(--space-);
+} */
+
+
+/* .title-container, */
+header {
+    display: flex;
+    justify-content: center;
+    margin: var(--space-xs) var(--space-s);
+}
+
+section {
+    min-width: 100%;
+    border: .5px black solid;
+    border-radius: 10px;
+    padding: var(--space-s);
+}
+a>div > * + *,
+section:not(.card-bouteille) > * + * {
+	margin-top: var(--space-s);
+}

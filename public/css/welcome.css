@@ -1,0 +1,29 @@
+.welcome {
+    padding: 0 3rem;
+    /* max-width: 175px; */
+}
+
+.welcome-title {
+    font-size: 2rem;
+}
+
+.welcome-vino {
+    font-family: "dreamboat", sans-serif;
+    font-weight: 900;
+}
+
+.welcome-img-container {
+    /* width: 20%; */
+    height: 180px;
+    /* max-width: 600px; */
+}
+
+/* à résoudre */
+.welcome-img {
+    max-height: 180px;
+}
+
+
+
+
+
