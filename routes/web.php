@@ -129,16 +129,12 @@ Route::put('/admin/users/{id}', [AdminController::class, 'updateUser'])->name('a
 Route::get('/admin/users/{user}/edit', [AdminController::class, 'edit'])->name('admin.users.edit');
 Route::delete('/admin/users-delete/{user}', [AdminController::class, 'destroyUser'])->name('admin.users.destroy');
 
+
+
 // Routes pour le contrôleur de cellier
 Route::get('/cellier', [CellierController::class, 'index'])->name('cellier.index');
 Route::get('/cellier/recherche', [CellierController::class, 'showSearchForm'])->name('cellier.search-form');
 Route::post('/cellier/recherche', [CellierController::class, 'recherche'])->name('cellier.recherche');
-
-Route::get('/cellier', [CellierController::class, 'index'])->name('cellier.index');
-Route::get('/cellier/recherche', [CellierController::class, 'showSearchForm'])->name('cellier.search-form');
-
- //Route pour gérer la recherche dans les celliers
-Route::post('/celliers/recherche', [CellierController::class, 'recherche'])->name('cellier.recherche');
 
 // Route pour afficher la vue recherche.blade.php pour un cellier spécifique
 Route::get('/celliers/{cellier_id}/recherche', [CellierController::class, 'afficherRechercheCellier'])->name('cellier.recherche.cellier');
@@ -149,11 +145,16 @@ Route::post('/celliers/{cellier_id}/recherche', [CellierController::class, 'rech
 // Route pour la recherche de bouteilles dans un cellier
 Route::post('/celliers/{cellier_id}/recherche-bouteilles', [CellierController::class, 'rechercheBouteilles'])->name('cellier.recherche-bouteilles');
 
-Route::post('/recherche', 'CellierController@recherche')->name('recherche');
+// Routes pour le contrôleur de BouteilleCellier
+Route::post('/celliers/recherche/{cellier_id}', [BouteilleCellierController::class, 'rechercheEtFiltrage'])->name('rechercheEtFiltrage.cellier');
 
-Route::post('/cellier/recherche', 'CellierController@recherche')->name('cellier.recherche');
-Route::get('/cellier/recherche', [CellierController::class, 'afficherFormulaireRecherche'])->name('cellier.afficher-recherche');
-Route::post('/cellier/recherche', [CellierController::class, 'recherche'])->name('cellier.recherche');
+
+// Route de recherche globale
+Route::post('/recherche', [CellierController::class, 'recherche'])->name('recherche');
+
 // Afficher le formulaire de recherche dans un cellier
-Route::get('/cellier/recherche', 'CellierController@afficherFormulaireRecherche')->name('cellier.recherche.form');
+Route::get('/cellier/recherche', [CellierController::class, 'afficherFormulaireRecherche'])->name('cellier.afficher-recherche');
+Route::post('/celliers/recherche/{cellier_id}', [BouteilleCellierController::class, 'rechercheEtFiltrage'])->name('rechercheEtFiltrage.cellier');
+
+Route::get('/celliers/recherche/{cellier_id}', [BouteilleCellierController::class, 'rechercheEtFiltrage'])->name('rechercheEtFiltrage.cellier.get');
 
