@@ -1,67 +1,72 @@
 <!-- resources/views/cellier/recherche.blade.php -->
-
 @extends('layouts.app')
 
 @section('title', 'Résultats de la recherche')
 
-<!-- Utiliser la section 'recherche' au lieu de 'content' -->
-@section('recherche')
-    <!-- resources/views/cellier/recherche-content.blade.php -->
+@section('content')
+    <header>
+        @isset($cellier)
+            <a href="{{ route('cellier.show', ['cellier_id' => $cellier->id]) }}" class="btn-arrow-top">
+                <!-- Bouton de retour au cellier -->
+            </a>
+        @else
+            <a href="{{ route('cellier.index') }}" class="btn-arrow-top">
+                <!-- Bouton de retour à la liste des celliers -->
+            </a>
+        @endisset
+    </header>
+    <main class="nav-margin">
+        <h1>Résultats de la recherche</h1>
 
-<header>
-    @isset($cellier)
-        <a href="{{ route('cellier.show', ['cellier_id' => $cellier->id]) }}" class="btn-arrow-top">
-            <!-- Bouton de retour au cellier -->
-        </a>
-    @else
-        <a href="{{ route('cellier.index') }}" class="btn-arrow-top">
-            <!-- Bouton de retour à la liste des celliers -->
-        </a>
-    @endisset
-</header>
+        <!-- Formulaire de recherche et filtrage -->
+        <form action="{{ route('rechercheEtFiltrage.cellier', ['cellier_id' => $cellier->id]) }}" method="post">
+            @csrf
+            <label for="search">Recherche :</label>
+            <input type="text" name="search" id="search" value="{{ request('search') }}">
 
-<main class="nav-margin">
-    <h1>Résultats de la recherche</h1>
+            <label for="type_vin">Type :</label>
+            <input type="text" name="type_vin" placeholder="Type">
 
-    <!-- Formulaire de recherche dans le cellier actuel -->
-    <form action="{{ route('recherche.cellier', ['cellier' => $cellier->id]) }}" method="get">
-        @csrf
-        <label for="search">Recherche :</label>
-        <input type="text" name="search" id="search" value="{{ request('search') }}">
-        <button type="submit">Rechercher</button>
-    </form>
+            <label for="region_vin">Région :</label>
+            <input type="text" name="region_vin" placeholder="Région">
 
+            <label for="annee_vin">Année :</label>
+            <input type="number" name="annee_vin" placeholder="Année">
 
-    <!-- Afficher les résultats de la recherche -->
-    @if(isset($resultats) && $resultats->isNotEmpty())
-        <ul>
-            @foreach ($resultats as $resultat)
-                <li>
-                    @if(isset($resultat['bouteille']))
-                        {{ $resultat['bouteille']->nom }} - {{ $resultat['bouteille']->type }} - {{ $resultat['bouteille']->region }} - {{ $resultat['bouteille']->annee }}
-                    @endif
+            <label for="pays_vin">Pays :</label>
+            <input type="text" name="pays_vin" placeholder="Pays">
 
-                    @if(isset($resultat['cellier']))
-                        (Cellier : {{ $resultat['cellier']->nom }})
-                    @endif
-                </li>
-            @endforeach
-        </ul>
-    @else
-        <p>Aucun résultat trouvé.</p>
-    @endif
+            <!-- Search and filter buttons -->
+            <button type="submit">Rechercher</button>
+            <button type="submit" name="sort" value="name-asc">Trier par nom (ascendant)</button>
+            <button type="submit" name="sort" value="name-desc">Trier par nom (descendant)</button>
+            <button type="submit" name="sort" value="price-asc">Trier par prix (ascendant)</button>
+            <button type="submit" name="sort" value="price-desc">Trier par prix (descendant)</button>
+        </form>
 
-    <!-- Retour au cellier ou à la liste des celliers -->
-    @if(isset($cellier))
-        <a href="{{ route('cellier.show', ['cellier_id' => $cellier->id]) }}">Retour au cellier</a>
-    @else
-        <a href="{{ route('cellier.index') }}">Retour à la liste des celliers</a>
-    @endif
+        <!-- Afficher les résultats de la recherche -->
+        @if(isset($bouteilles) && $bouteilles->isNotEmpty())
+            <ul>
+                @foreach ($bouteilles as $bouteille)
+                    <li>
+                        {{ $bouteille->bouteille->nom }} - {{ $bouteille->bouteille->type }} - {{ $bouteille->bouteille->region }} - {{ $bouteille->bouteille->annee }}
+                    </li>
+                @endforeach
+            </ul>
+        @else
+            <p>Aucun résultat trouvé.</p>
+        @endif
 
-    <!-- Voir les bouteilles dans le cellier -->
-    @if(isset($cellierId) && $cellierId)
-        <a href="{{ route('bouteille.index', ['cellier_id' => $cellierId]) }}">Voir les bouteilles</a>
-    @endif
-</main>
+        <!-- Retour au cellier ou à la liste des celliers -->
+        @if(isset($cellier))
+            <a href="{{ route('cellier.show', ['cellier_id' => $cellier->id]) }}">Retour au cellier</a>
+        @else
+            <a href="{{ route('cellier.index') }}">Retour à la liste des celliers</a>
+        @endif
 
+        <!-- Voir les bouteilles dans le cellier -->
+        @if(isset($cellierId) && $cellierId)
+            <a href="{{ route('bouteille.index', ['cellier_id' => $cellierId]) }}">Voir les bouteilles</a>
+        @endif
+    </main>
 @endsection

@@ -11,9 +11,10 @@ class BouteilleCellierController extends Controller
     public function index(Request $request)
     {
         $cellierId = $request->input('cellier_id');
-        $critereTri = $request->input('tri', 'created_at'); // Tri par défaut par date de création
+        $critereTri = $request->input('tri', 'created_at'); 
+        //------------------------------------
     
-        // Récupérez également les détails du cellier pour le passer à la vue
+        
         $cellier = Cellier::find($cellierId);
     
         $bouteilles = BouteilleCellier::triParCritere($critereTri)
@@ -25,7 +26,7 @@ class BouteilleCellierController extends Controller
     
     public function create()
     {
-        // Code pour la création d'une bouteille dans le cellier
+        // --------------------------
     }
 
     public function store(Request $request)
@@ -40,12 +41,12 @@ class BouteilleCellierController extends Controller
 
     public function show(BouteilleCellier $bouteilleCellier)
     {
-        // Code pour afficher une bouteille spécifique dans le cellier
+        // --------------------
     }
 
     public function edit(BouteilleCellier $bouteilleCellier)
     {
-        // Code pour l'édition d'une bouteille dans le cellier
+        // -----------------------------
     }
 
     public function update(Request $request, $id)
@@ -71,4 +72,58 @@ class BouteilleCellierController extends Controller
         BouteilleCellier::select()->where('id', $bouteille_cellier->id)->delete();
         return redirect(route('cellier.show', $cellier_id));
     }
+    public function rechercheEtFiltrage(Request $request, $cellier_id)
+    {
+        $cellier = Cellier::findOrFail($cellier_id);
+
+        $nomBouteille = $request->input('search');
+        $typeVin = $request->input('type_vin');
+        $regionVin = $request->input('region_vin');
+        $anneeVin = $request->input('annee_vin');
+        $paysVin = $request->input('pays_vin');
+        $sort = $request->input('sort', ''); 
+
+        $bouteilleQuery = $cellier->bouteillesCelliers()
+            ->when($nomBouteille, function ($query) use ($nomBouteille) {
+                $query->whereHas('bouteille', function ($subquery) use ($nomBouteille) {
+                    $subquery->where('nom', 'like', "%$nomBouteille%");
+                });
+            })
+            ->when($typeVin, function ($query) use ($typeVin) {
+                $query->whereHas('bouteille', function ($subquery) use ($typeVin) {
+                    $subquery->where('type', $typeVin);
+                });
+            })
+            ->when($regionVin, function ($query) use ($regionVin) {
+                $query->whereHas('bouteille', function ($subquery) use ($regionVin) {
+                    $subquery->where('region', $regionVin);
+                });
+            })
+            ->when($anneeVin, function ($query) use ($anneeVin) {
+                $query->whereHas('bouteille', function ($subquery) use ($anneeVin) {
+                    $subquery->where('annee', $anneeVin);
+                });
+            })
+            ->when($paysVin, function ($query) use ($paysVin) {
+                $query->whereHas('bouteille', function ($subquery) use ($paysVin) {
+                    $subquery->where('pays', $paysVin);
+                });
+            })
+            ->when($sort, function ($query) use ($sort) {
+                if ($sort == 'name-asc') {
+                    $query->orderBy('bouteille.nom');
+                } elseif ($sort == 'name-desc') {
+                    $query->orderByDesc('bouteille.nom');
+                } elseif ($sort == 'price-asc') {
+                    $query->orderBy('bouteille.prix');
+                } elseif ($sort == 'price-desc') {
+                    $query->orderByDesc('bouteille.prix');
+                }
+            });
+
+        $bouteilles = $bouteilleQuery->get();
+
+        return view('cellier.show-search', compact('cellier', 'bouteilles'));
+    }
+
 }
