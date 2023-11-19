@@ -19,29 +19,24 @@
         <h1>Résultats de la recherche</h1>
 
 <!-- Formulaire de recherche et filtrage -->
+
 <form action="{{ route('rechercheEtFiltrage.cellier', ['cellier_id' => $cellier->id]) }}" method="post">
     @csrf
-    <label for="search">Recherche :</label>
+    <label for="search">Recherche par nom :</label>
     <input type="text" name="search" id="search" value="{{ request('search') }}">
 
-    <label for="type_vin">Type :</label>
-    <input type="text" name="type_vin" placeholder="Type">
+    <label for="filtrage">Filtrer par :</label>
+    <select name="filtrage" id="filtrage">
+        <option value="rouge" {{ request('filtrage') == 'rouge' ? 'selected' : '' }}>Vin Rouge</option>
+        <option value="blanc" {{ request('filtrage') == 'blanc' ? 'selected' : '' }}>Vin Blanc</option>
+        
+    </select>
 
-    <label for="region_vin">Région :</label>
-    <input type="text" name="region_vin" placeholder="Région">
+    <label for="annee_vin">Année (alternative) :</label>
+    <input type="number" name="annee_vin" placeholder="Année (laisser vide pour ignorer)" value="{{ request('annee_vin') }}">
 
-    <label for="annee_vin">Année :</label>
-    <input type="number" name="annee_vin" placeholder="Année">
-
-    <label for="pays_vin">Pays :</label>
-    <input type="text" name="pays_vin" placeholder="Pays">
-
-    <!-- Search and filter buttons -->
+    <!-- Boutons de recherche et de filtre -->
     <button type="submit">Rechercher</button>
-    <button type="submit" name="sort" value="name-asc">Trier par nom (ascendant)</button>
-    <button type="submit" name="sort" value="name-desc">Trier par nom (descendant)</button>
-    <button type="submit" name="sort" value="price-asc">Trier par prix (ascendant)</button>
-    <button type="submit" name="sort" value="price-desc">Trier par prix (descendant)</button>
 </form>
 
 <!-- Afficher les résultats de la recherche -->
