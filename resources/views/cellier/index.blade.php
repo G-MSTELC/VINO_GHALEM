@@ -39,6 +39,7 @@
         @empty 
             <p>Aucun cellier</p>
         @endforelse
-
+       
+       <a href="{{ route('cellier.create') }}">Ajouter un cellier</a>
     </main>
 @endsection

@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 // Routes nécessitant une authentification
 Route::middleware(['auth'])->group(function () {
-
+    Route::post('/cellier', 'CellierController@store')->name('cellier.store');
     // *************** Connexion (redirection) ****************
     Route::get('/', [CustomAuthController::class, 'index'])->name('welcome');
 

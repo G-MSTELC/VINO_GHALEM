@@ -1,4 +1,4 @@
-
+<!-- resources/views/cellier/recherche.blade.php -->
 @extends('layouts.app')
 
 @section('title', 'Résultats de la recherche')
@@ -10,6 +10,9 @@
             </a>
         @else
             <a href="{{ route('cellier.index') }}" class="btn-arrow-top">
+            </a>
+            <a href="{{ route('cellier.create') }}" class="btn btn-success">
+                <i class="fas fa-plus"></i> Ajouter un cellier
             </a>
         @endisset
     </header>

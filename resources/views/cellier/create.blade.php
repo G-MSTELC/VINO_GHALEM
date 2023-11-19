@@ -1,5 +1,4 @@
 <!-- Création d'un nouveau cellier -->
-
 @extends('layouts.app')
 
 @section('content')

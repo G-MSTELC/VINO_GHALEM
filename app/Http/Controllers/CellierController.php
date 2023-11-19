@@ -19,7 +19,7 @@ class CellierController extends Controller
      */
     public function index()
     {
-        // Récupère les celliers avec le nombre de bouteilles et les informations des bouteilles
+        
         $celliers = Cellier::withCount('bouteillesCelliers')
             ->with('bouteillesCelliers.bouteille')
             ->where('user_id', Auth::id())
@@ -40,7 +40,6 @@ class CellierController extends Controller
 {
     $cellierId = $request->input('cellier_id');
     
-    // Si l'ID du cellier est passé, récupérez les données du cellier
     $cellier = null;
     if ($cellierId) {
         $cellier = DB::table('celliers')->find($cellierId);
