@@ -1,4 +1,4 @@
-<!-- resources/views/cellier/show-search.blade.php -->
+
 @extends('layouts.app')
 
 @section('title', 'Recherche dans le cellier')
@@ -20,7 +20,6 @@
 
         @include('cellier.recherche', ['cellier' => $cellier])
 
-        <!-- Afficher les résultats de la recherche -->
         @if(isset($bouteilles) && $bouteilles->isNotEmpty())
             <ul>
                 @foreach ($bouteilles as $bouteille)
@@ -33,14 +32,12 @@
             <p>Aucun résultat trouvé.</p>
         @endif
 
-        <!-- Retour au cellier ou à la liste des celliers -->
         @if(isset($cellier))
             <a href="{{ route('cellier.show', ['cellier_id' => $cellier->id]) }}">Retour au cellier</a>
         @else
             <a href="{{ route('cellier.index') }}">Retour à la liste des celliers</a>
         @endif
 
-        <!-- Voir les bouteilles dans le cellier -->
         @if(isset($cellierId) && $cellierId)
             <a href="{{ route('bouteille.index', ['cellier_id' => $cellier->id]) }}">Voir les bouteilles</a>
         @endif

@@ -23,13 +23,11 @@
     <main class="nav-margin">
         <h1>Résultats de la recherche</h1>
 
-        <!-- Formulaire de recherche par mot-clé, phrase ou nom de bouteille -->
         <form action="{{ route('rechercheEtFiltrage.cellier', ['cellier_id' => $cellier->id]) }}" method="post" class="form-inline">
             @csrf
             <label for="keyword" class="sr-only">Recherche par mot-clé, phrase ou nom de bouteille :</label>
             <input type="text" name="keyword" id="keyword" class="form-control mb-2 mr-sm-2" placeholder="Recherche par mot-clé, phrase ou nom de bouteille" value="{{ request('keyword') }}">
 
-            <!-- Formulaire de filtrage par type -->
             <div class="form-group">
                 <label for="type" class="sr-only">Filtrer par type de vin :</label>
                 <select name="type" id="type" class="custom-select mb-2 mr-sm-2">
@@ -39,25 +37,20 @@
                 </select>
             </div>
 
-            <!-- Formulaire de filtrage par région -->
             <div class="form-group">
                 <label for="region" class="sr-only">Filtrer par région :</label>
                 <input type="text" name="region" id="region" class="form-control mb-2 mr-sm-2" placeholder="Entrez la région" value="{{ request('region') }}">
             </div>
-
-            <!-- Formulaire de filtrage par pays -->
             <div class="form-group">
                 <label for="pays" class="sr-only">Filtrer par pays :</label>
                 <input type="text" name="pays" id="pays" class="form-control mb-2 mr-sm-2" placeholder="Entrez le pays" value="{{ request('pays') }}">
             </div>
 
-            <!-- Formulaire de filtrage par année -->
             <div class="form-group">
                 <label for="annee_vin" class="sr-only">Année (facultatif) :</label>
                 <input type="number" name="annee_vin" class="form-control mb-2 mr-sm-2" placeholder="Année (laisser vide pour ignorer)" value="{{ request('annee_vin') }}">
             </div>
 
-            <!-- Formulaire de filtrage par image -->
             <div class="form-group">
                 <label for="image" class="sr-only">Filtrer par image :</label>
                 <select name="image" id="image" class="custom-select mb-2 mr-sm-2">
@@ -67,13 +60,10 @@
                 </select>
             </div>
 
-            <!-- Formulaire de filtrage par prix minimum -->
             <div class="form-group">
                 <label for="prix_min" class="sr-only">Prix minimum :</label>
                 <input type="number" name="prix_min" class="form-control mb-2 mr-sm-2" placeholder="Prix minimum" value="{{ request('prix_min') }}">
             </div>
-
-            <!-- Formulaire de filtrage par prix maximum -->
             <div class="form-group">
                 <label for="prix_max" class="sr-only">Prix maximum :</label>
                 <input type="number" name="prix_max" class="form-control mb-2 mr-sm-2" placeholder="Prix maximum" value="{{ request('prix_max') }}">
@@ -121,7 +111,6 @@
             </a>
         @endif
 
-        <!-- Retour au cellier ou à la liste des celliers -->
         @if(isset($cellier))
             <a href="{{ route('cellier.show', ['cellier_id' => $cellier->id]) }}">Retour au cellier</a>
         @else
