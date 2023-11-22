@@ -12,8 +12,6 @@ class BouteilleCellierController extends Controller
     {
         $cellierId = $request->input('cellier_id');
         $critereTri = $request->input('tri', 'created_at'); 
-        //
-    
         
         $cellier = Cellier::find($cellierId);
     
@@ -46,7 +44,7 @@ class BouteilleCellierController extends Controller
 
     public function edit(BouteilleCellier $bouteilleCellier)
     {
-        
+      //  
     }
 
     public function update(Request $request, $id)
@@ -72,6 +70,7 @@ class BouteilleCellierController extends Controller
         BouteilleCellier::select()->where('id', $bouteille_cellier->id)->delete();
         return redirect(route('cellier.show', $cellier_id));
     }
+    
     //fonction recherche & filtrage
 public function rechercheEtFiltrage(Request $request, $cellier_id)
 {

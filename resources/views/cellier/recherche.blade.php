@@ -128,7 +128,6 @@
             <a href="{{ route('cellier.index') }}">Retour à la liste des celliers</a>
         @endif
 
-        <!-- Voir les bouteilles dans le cellier -->
         @if(isset($cellierId) && $cellierId)
             <a href="{{ route('bouteille.index', ['cellier_id' => $cellierId]) }}">Voir les bouteilles</a>
         @endif

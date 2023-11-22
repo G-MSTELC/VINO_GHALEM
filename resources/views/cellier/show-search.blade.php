@@ -18,7 +18,6 @@
     <main class="nav-margin">
         <h1>Résultats de la recherche</h1>
 
-        <!-- Inclusion de recherche.blade.php -->
         @include('cellier.recherche', ['cellier' => $cellier])
 
         <!-- Afficher les résultats de la recherche -->
