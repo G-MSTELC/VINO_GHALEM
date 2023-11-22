@@ -2,6 +2,12 @@
 
 @section('title', 'Résultats de la recherche')
 
+@section('styles')
+
+    <link rel="stylesheet" href="{{ asset('chemin/vers/votre/fichier/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('chemin/vers/votre/fichier/btn-test.css') }}">
+@endsection
+
 @section('content')
     <header>
         @isset($cellier)
@@ -13,10 +19,11 @@
             </a>
         @endisset
     </header>
+
     <main class="nav-margin">
         <h1>Résultats de la recherche</h1>
 
- <!-- Formulaire de recherche par mot-clé, phrase ou nom de bouteille -->
+        <!-- Formulaire de recherche par mot-clé, phrase ou nom de bouteille -->
         <form action="{{ route('rechercheEtFiltrage.cellier', ['cellier_id' => $cellier->id]) }}" method="post" class="form-inline">
             @csrf
             <label for="keyword" class="sr-only">Recherche par mot-clé, phrase ou nom de bouteille :</label>
@@ -72,25 +79,21 @@
                 <input type="number" name="prix_max" class="form-control mb-2 mr-sm-2" placeholder="Prix maximum" value="{{ request('prix_max') }}">
             </div>
 
-            <!-- Bouton pour activer/désactiver le filtrage avancé -->
             <button type="button" class="btn btn-primary mb-2 mr-sm-2" data-toggle="collapse" data-target="#collapseFiltrage" aria-expanded="false" aria-controls="collapseFiltrage">
                 Filtrage
             </button>
 
             <div class="collapse" id="collapseFiltrage">
-                
+               
             </div>
 
             <button type="submit" class="btn btn-primary mb-2">Rechercher</button>
         </form>
 
-        <!-- Afficher les résultats de la recherche -->
         @if(isset($bouteilles) && $bouteilles->isNotEmpty())
-            <ul>
+            <div class="resultats-container">
                 @foreach ($bouteilles as $bouteille)
-                    <li>
-                        {{ $bouteille->bouteille->nom }} - {{ $bouteille->bouteille->type }} - {{ $bouteille->bouteille->region }} - {{ $bouteille->bouteille->annee }}
-
+                    <div class="card">
                         @if ($bouteille->bouteille->srcImage || $bouteille->bouteille->srcsetImage)
                             @php
                                 $imagePath = $bouteille->bouteille->srcImage ? $bouteille->bouteille->srcImage : $bouteille->bouteille->srcsetImage;
@@ -100,11 +103,22 @@
                         @else
                             <span>Aucune image disponible</span>
                         @endif
-                    </li>
+
+                        <h3>{{ $bouteille->bouteille->nom }}</h3>
+                        <p>Type: {{ $bouteille->bouteille->type }}</p>
+                        <p>Région: {{ $bouteille->bouteille->region }}</p>
+                        <p>Année: {{ $bouteille->bouteille->annee }}</p>
+                    </div>
                 @endforeach
-            </ul>
+            </div>
         @else
             <p>Aucun résultat trouvé.</p>
+        @endif
+
+        @if(!isset($cellier) && (!isset($bouteilles) || $bouteilles->isEmpty()))
+            <a href="{{ route('cellier.create') }}" class="btn btn-success">
+                <i class="fas fa-plus"></i> Ajouter un cellier
+            </a>
         @endif
 
         <!-- Retour au cellier ou à la liste des celliers -->
