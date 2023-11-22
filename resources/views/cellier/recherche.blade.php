@@ -4,8 +4,8 @@
 
 @section('styles')
 
-    <link rel="stylesheet" href="{{ asset('chemin/vers/votre/fichier/admin.css') }}">
-    <link rel="stylesheet" href="{{ asset('chemin/vers/votre/fichier/btn-test.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+<link rel="stylesheet" href="{{ asset('css/buttons/btn-test.css') }}">
 @endsection
 
 @section('content')
