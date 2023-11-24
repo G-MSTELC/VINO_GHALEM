@@ -1,0 +1,61 @@
+
+
+/* Container for each search result card */
+.search-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Individual search result card */
+.search-card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.search-card:hover {
+    transform: scale(1.05);
+}
+
+/* Image styling */
+.search-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+/* Title styling */
+.search-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Additional information styling */
+.search-card .info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Styling for the search form */
+.form-inline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.form-group {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+

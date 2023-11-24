@@ -72,7 +72,7 @@ class BouteilleCellierController extends Controller
     }
     
     //fonction recherche & filtrage
-public function rechercheEtFiltrage(Request $request, $cellier_id)
+    public function rechercheEtFiltrage(Request $request, $cellier_id)
 {
     $cellier = Cellier::findOrFail($cellier_id);
 
@@ -84,6 +84,8 @@ public function rechercheEtFiltrage(Request $request, $cellier_id)
     $imageVin = $request->input('image');
     $prixMin = $request->filled('prix_min') ? $request->input('prix_min') : null;
     $prixMax = $request->filled('prix_max') ? $request->input('prix_max') : null;
+    $tauxSucre = $request->input('tauxSucre');
+    $degre = $request->input('degre');
     $sort = $request->input('sort', '');
 
     $bouteilleQuery = $cellier->bouteillesCelliers()
@@ -136,6 +138,16 @@ public function rechercheEtFiltrage(Request $request, $cellier_id)
                 $subquery->where('prix', '<=', $prixMax);
             });
         })
+        ->when($tauxSucre !== null, function ($query) use ($tauxSucre) {
+            $query->whereHas('bouteille', function ($subquery) use ($tauxSucre) {
+                $subquery->where('tauxSucre', $tauxSucre);
+            });
+        })
+        ->when($degre !== null, function ($query) use ($degre) {
+            $query->whereHas('bouteille', function ($subquery) use ($degre) {
+                $subquery->where('degre', $degre);
+            });
+        })
         ->when($sort, function ($query) use ($sort) {
             if ($sort == 'name-asc') {
                 $query->orderBy('bouteille.nom');
@@ -152,6 +164,4 @@ public function rechercheEtFiltrage(Request $request, $cellier_id)
 
     return view('cellier.show-search', compact('cellier', 'bouteilles'));
 }
-
-    
 }

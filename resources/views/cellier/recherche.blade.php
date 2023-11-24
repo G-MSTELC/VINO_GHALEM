@@ -3,9 +3,9 @@
 @section('title', 'Résultats de la recherche')
 
 @section('styles')
-
-<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-<link rel="stylesheet" href="{{ asset('css/buttons/btn-test.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/btn-test.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/search-card.css') }}">
 @endsection
 
 @section('content')
@@ -41,6 +41,7 @@
                 <label for="region" class="sr-only">Filtrer par région :</label>
                 <input type="text" name="region" id="region" class="form-control mb-2 mr-sm-2" placeholder="Entrez la région" value="{{ request('region') }}">
             </div>
+
             <div class="form-group">
                 <label for="pays" class="sr-only">Filtrer par pays :</label>
                 <input type="text" name="pays" id="pays" class="form-control mb-2 mr-sm-2" placeholder="Entrez le pays" value="{{ request('pays') }}">
@@ -64,46 +65,55 @@
                 <label for="prix_min" class="sr-only">Prix minimum :</label>
                 <input type="number" name="prix_min" class="form-control mb-2 mr-sm-2" placeholder="Prix minimum" value="{{ request('prix_min') }}">
             </div>
+
             <div class="form-group">
                 <label for="prix_max" class="sr-only">Prix maximum :</label>
                 <input type="number" name="prix_max" class="form-control mb-2 mr-sm-2" placeholder="Prix maximum" value="{{ request('prix_max') }}">
             </div>
 
+            <div class="form-group">
+                <label for="tauxSucre" class="sr-only">Taux de sucre :</label>
+                <input type="text" name="tauxSucre" id="tauxSucre" class="form-control mb-2 mr-sm-2" placeholder="Taux de sucre" value="{{ request('tauxSucre') }}">
+            </div>
+
+            <div class="form-group">
+                <label for="degre" class="sr-only">Degré d'alcool :</label>
+                <input type="text" name="degre" id="degre" class="form-control mb-2 mr-sm-2" placeholder="Degré d'alcool" value="{{ request('degre') }}">
+            </div>
+           
             <button type="button" class="btn btn-primary mb-2 mr-sm-2" data-toggle="collapse" data-target="#collapseFiltrage" aria-expanded="false" aria-controls="collapseFiltrage">
                 Filtrage
             </button>
 
             <div class="collapse" id="collapseFiltrage">
-               
             </div>
 
             <button type="submit" class="btn btn-primary mb-2">Rechercher</button>
         </form>
-
         @if(isset($bouteilles) && $bouteilles->isNotEmpty())
-            <div class="resultats-container">
-                @foreach ($bouteilles as $bouteille)
-                    <div class="card">
-                        @if ($bouteille->bouteille->srcImage || $bouteille->bouteille->srcsetImage)
-                            @php
-                                $imagePath = $bouteille->bouteille->srcImage ? $bouteille->bouteille->srcImage : $bouteille->bouteille->srcsetImage;
-                                $imagePath = Str::startsWith($imagePath, 'http') ? $imagePath : asset('images/' . $imagePath);
-                            @endphp
-                            <img src="{{ $imagePath }}" alt="Image de la bouteille">
-                        @else
-                            <span>Aucune image disponible</span>
-                        @endif
+       <div class="search-card-container">
+            @foreach ($bouteilles as $bouteille)
+              <div class="search-card">
+                  @if ($bouteille->bouteille->srcImage || $bouteille->bouteille->srcsetImage)
+                    @php
+                        $imagePath = $bouteille->bouteille->srcImage ? $bouteille->bouteille->srcImage : $bouteille->bouteille->srcsetImage;
+                        $imagePath = Str::startsWith($imagePath, 'http') ? $imagePath : asset('images/' . $imagePath);
+                    @endphp
+                    <img src="{{ $imagePath }}" alt="Image de la bouteille">
+                @else
+                    <span>Aucune image disponible</span>
+                @endif
 
-                        <h3>{{ $bouteille->bouteille->nom }}</h3>
-                        <p>Type: {{ $bouteille->bouteille->type }}</p>
-                        <p>Région: {{ $bouteille->bouteille->region }}</p>
-                        <p>Année: {{ $bouteille->bouteille->annee }}</p>
-                    </div>
-                @endforeach
-            </div>
-        @else
-            <p>Aucun résultat trouvé.</p>
-        @endif
+                <h3>{{ $bouteille->bouteille->nom }}</h3>
+                <p>Type: {{ $bouteille->bouteille->type }}</p>
+                <p>Région: {{ $bouteille->bouteille->region }}</p>
+                <p>Année: {{ $bouteille->bouteille->annee }}</p>
+              </div>
+           @endforeach
+      </div>
+@else
+    <p>Aucun résultat trouvé.</p>
+@endif
 
         @if(!isset($cellier) && (!isset($bouteilles) || $bouteilles->isEmpty()))
             <a href="{{ route('cellier.create') }}" class="btn btn-success">
