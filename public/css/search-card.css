@@ -1,6 +1,4 @@
-
-
-/* Container for each search result card */
+/* Conteneur pour chaque carte de résultat de recherche */
 .search-card-container {
     display: flex;
     flex-wrap: wrap;
@@ -9,7 +7,7 @@
     margin-top: 1rem;
 }
 
-/* Individual search result card */
+/* Carte individuelle de résultat de recherche */
 .search-card {
     width: 300px;
     border: 1px solid #ddd;
@@ -20,42 +18,61 @@
     transition: transform 0.2s ease-in-out;
 }
 
+/* Effet de survol sur la carte */
 .search-card:hover {
     transform: scale(1.05);
 }
 
-/* Image styling */
+/* Style de l'image dans la carte */
 .search-card img {
     max-width: 100%;
     height: auto;
-    border-radius: 4px;
-    margin-bottom: 0.5rem;
+    border-radius: 8px 8px 0 0; 
+    margin-bottom: 1rem;
+    object-fit: cover; 
 }
 
-/* Title styling */
+/* Style du titre dans la carte */
 .search-card h3 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin-bottom: 0.5rem;
+    color: #333;
 }
 
-/* Additional information styling */
 .search-card .info {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    color: #555; 
 }
 
-/* Styling for the search form */
+/* Style du formulaire de recherche */
 .form-inline {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 1rem;
+    margin-top: 1rem; 
 }
 
+/* Style du groupe de formulaire */
 .form-group {
     flex: 1;
     margin-right: 1rem;
 }
 
+/* Style du bouton principal */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+/* Effet de survol sur le bouton principal */
+.btn-primary:hover {
+    background-color: #0056b3;
+}
